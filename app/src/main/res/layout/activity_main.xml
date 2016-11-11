@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.peterombodi.customprogress.MainActivity">
+
+    <com.peterombodi.customprogress.progress.SquareProgress
+        android:id="@+id/cpSquare1"
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        custom:drawColor="@color/colorAccent"
+        custom:viewBackgroundColor="@color/colorPrimaryDark"
+        custom:lineStroke="1dp"
+        custom:animationSpeed="4"
+        android:layout_marginLeft="31dp"
+        android:layout_alignParentTop="true"
+ >
+    </com.peterombodi.customprogress.progress.SquareProgress>
+
+    <com.peterombodi.customprogress.progress.SquareProgress
+        android:id="@+id/cpSquare2"
+        android:layout_height="75dp"
+        android:layout_width="75dp"
+        custom:drawColor="@color/colorPrimaryDark"
+        custom:viewBackgroundColor="@color/colorPrimaryDark"
+        custom:lineStroke="1dp"
+        custom:animationSpeed="2"
+        android:layout_marginTop="27dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="42dp"
+        android:layout_marginEnd="42dp">
+    </com.peterombodi.customprogress.progress.SquareProgress>
+
+</RelativeLayout>

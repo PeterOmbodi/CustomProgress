@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SquareProgress">
+
+        <attr name="drawColor" format="color"/>
+        <attr name="animationSpeed" format="integer"/>
+        <attr name="viewBackgroundColor" format="color"/>
+        <attr name="lineStroke" format="dimension"/>
+
+    </declare-styleable>
+</resources>
