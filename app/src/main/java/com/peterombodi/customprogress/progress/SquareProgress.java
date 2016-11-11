@@ -240,7 +240,9 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
                         if (!it.center) it.alpha = alpha;
                     }
                 }
+
                 invalidate();
+
             }
         });
         return anim;
