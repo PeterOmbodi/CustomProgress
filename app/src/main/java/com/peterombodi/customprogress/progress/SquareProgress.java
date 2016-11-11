@@ -20,10 +20,6 @@ import com.peterombodi.customprogress.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Admin on 09.11.2016.
- */
-
 public class SquareProgress extends View implements Animator.AnimatorListener {
 
     private static final String TAG = "SquareProgress";
@@ -34,18 +30,13 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
     private static final int BASE_DURATION = 3000;
     public static final boolean AVERS = true;
     public static final boolean REVERS = false;
-    private int drawColor;
-    private int viewBackgroundColor;
-    private float viewStroke = 0.0f;
     private int animationSpeed;
-    private List<Item> itemList = new ArrayList<Item>();
+    private List<Item> itemList = new ArrayList<>();
     private Paint paintForeground;
-    private Paint paintBackground;
     private boolean playStarted;
     private float viewWidth;
     private float viewHeight;
-    //private ObjectAnimator  anim;
-    public Item itemF;
+
 
     public SquareProgress(Context context) {
         super(context);
@@ -74,9 +65,10 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
                 R.styleable.SquareProgress,
                 0, 0
         );
+        int drawColor;
+        float viewStroke = 0.0f;
         try {
             drawColor = a.getInt(R.styleable.SquareProgress_drawColor, 0xff000000);
-            viewBackgroundColor = a.getInt(R.styleable.SquareProgress_viewBackgroundColor, 0xff000000);
             viewStroke = a.getDimension(R.styleable.SquareProgress_lineStroke, 0.0f);
             animationSpeed = a.getInt(R.styleable.SquareProgress_animationSpeed, 1);
         } finally {
@@ -93,26 +85,9 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
         paintForeground.setColor(drawColor);
         paintForeground.setStrokeWidth(viewStroke);
 
-        paintBackground = new Paint();
-        paintBackground.setColor(viewBackgroundColor);
-        paintBackground.setStyle(Paint.Style.FILL);
-
-
-//        // In edit mode it's nice to have some demo data, so add that here.
-//        if (this.isInEditMode()) {
-//            Resources res = getResources();
-//            addItem(0, 0, 10, res.getColor(R.color.colorPrimary));
-//            addItem(100, 0, 10, res.getColor(R.color.colorAccent));
-//            addItem(100, 100, 10, res.getColor(R.color.colorAccent));
-//            addItem(0, 100, 10, res.getColor(R.color.colorAccent));
-//        }
-
         final ViewTreeObserver observer = this.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             public void onGlobalLayout() {
-//                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
-//                    //observer.removeOnGlobalLayoutListener(this);
-//                }
                 if (!playStarted) playAnimation();
             }
         });
@@ -122,12 +97,7 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
     public void playAnimation() {
         playStarted = true;
         if (itemList.get(0) != null) {
-            Log.d(TAG, "-------------+++ playAnimation ------------------" + itemList.get(0).getClass().getName());
-//            itemF = itemList.get(0);
-//            ObjectAnimator anim = ObjectAnimator.ofFloat(itemF, "x", 0f, viewWidth-itemF.size);
-//            anim.setDuration(3000);
-//            anim.addUpdateListener(this);
-//            anim.start();
+            Log.d(TAG, "-------------+++ playAnimation ------------------");
 
             ValueAnimator a0 = getAlphaAnimator(itemList.get(4), 3);
 
@@ -240,14 +210,11 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
                         if (!it.center) it.alpha = alpha;
                     }
                 }
-
                 invalidate();
-
             }
         });
         return anim;
     }
-
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -295,7 +262,6 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
     }
 
     public int addItem(float x1, float y1, float size, boolean center) {
-        Log.d(TAG, "_______________________addItem x = " + x1 + "; y = " + y1);
         Item it = new Item();
         it.left = x1;
         it.top = y1;
@@ -327,12 +293,6 @@ public class SquareProgress extends View implements Animator.AnimatorListener {
             for (int k = i; k >= 0; k--) {
                 drawLine(canvas, it, itemList.get(i - k));
             }
-
-//            if (i > 0) drawLine(canvas, it, itemList.get(0));
-//            if (i > 1) drawLine(canvas, it, itemList.get(i-1));
-//            if (i > 2) drawLine(canvas, it, itemList.get(i-2));
-
-            Log.d(TAG, "________________________onDraw it.top= " + it.top + "/ it.left" + it.left);
             i += 1;
         }
     }
